@@ -13,7 +13,7 @@
 
 	<groupId>com.arllain</groupId>
 	<artifactId>agcs-jwt-auth-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>agcs-jwt-auth-app</name>
 	<description>Sample JWT authentication service</description>
