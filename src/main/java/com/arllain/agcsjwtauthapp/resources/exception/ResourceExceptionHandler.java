@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.arllain.agcsjwtauthapp.services.exception.AuthenticationCustomException;
 import com.arllain.agcsjwtauthapp.services.exception.ObjectFoundException;
 import com.arllain.agcsjwtauthapp.services.exception.ObjectNotFoundException;
 
@@ -61,6 +62,14 @@ public class ResourceExceptionHandler {
 		}
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationError);
+	}
+
+	@ExceptionHandler(AuthenticationCustomException.class)
+	public ResponseEntity<StandardError> authenticationException(
+			AuthenticationCustomException authenticationCustomException, HttpServletRequest request) {
+		StandardError err = new StandardError(HttpStatus.UNAUTHORIZED.value(), authenticationCustomException.getMessage(),
+				System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
 	}
 
 }

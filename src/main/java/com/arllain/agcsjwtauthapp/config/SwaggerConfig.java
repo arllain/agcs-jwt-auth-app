@@ -48,7 +48,7 @@ public class SwaggerConfig {
 		return new ApiInfoBuilder()//
 				.title("AGCS JWT Authentication API")//
 				.description(
-						"This is a sample JWT authentication service. For this sample, you can use the `user@email.com.br` and password: 123456 to test the authorization filters. "
+						"This is a sample JWT authentication service. For this sample, you can use the `user@email.com` and password: 123456 to test the authorization filters. "
 						+ "Once you have successfully logged in and obtained the token, you should click on the right top button `Authorize` and introduce it with the prefix \"Bearer \".")//
 				.version("1.0.0")//
 				.license("MIT License").licenseUrl("http://opensource.org/licenses/MIT")//
