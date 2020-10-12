@@ -44,6 +44,7 @@ public class UserService {
 		if (!userRepository.existsByEmail(user.getEmail())) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setCreated_at(Instant.now());
+			user.setLast_login(Instant.now());
 			userRepository.save(user);
 			return jwtTokenProvider.createToken(user.getEmail());
 		} else {

@@ -64,6 +64,11 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationError);
 	}
 
+	/**
+	 * @param authenticationCustomException
+	 * @param request
+	 * @return
+	 */
 	@ExceptionHandler(AuthenticationCustomException.class)
 	public ResponseEntity<StandardError> authenticationException(
 			AuthenticationCustomException authenticationCustomException, HttpServletRequest request) {
