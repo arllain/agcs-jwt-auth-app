@@ -1,33 +1,29 @@
 package com.arllain.agcsjwtauthapp.dto;
 
-import java.io.Serializable;
+import java.time.Instant;
 import java.util.List;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class UserDataDTO implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class UserResponseDTO {
 
 	@ApiModelProperty(position = 0)
-	@NotEmpty(message = "First name is required")
 	private String firstName;
+
 	@ApiModelProperty(position = 1)
-	@NotEmpty(message = "Last name is required")
 	private String lastName;
+
 	@ApiModelProperty(position = 2)
-	@NotEmpty(message = "Email Address is required")
-	@Email(message = "You must enter a valid email")
 	private String email;
+
 	@ApiModelProperty(position = 3)
-	@NotEmpty(message = "Password is required")
-	private String password;
-	@ApiModelProperty(position = 4)
-	@NotEmpty(message = "Telephone is required. You must enter at least one.")
 	List<TelephoneDataDTO> phones;
+
+	@ApiModelProperty(position = 4)
+	private Instant created_at;
+
+	@ApiModelProperty(position = 5)
+	private Instant last_login;
 
 	/**
 	 * @return the firstName
@@ -72,20 +68,6 @@ public class UserDataDTO implements Serializable {
 	}
 
 	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	/**
 	 * @return the phones
 	 */
 	public List<TelephoneDataDTO> getPhones() {
@@ -97,6 +79,34 @@ public class UserDataDTO implements Serializable {
 	 */
 	public void setPhones(List<TelephoneDataDTO> phones) {
 		this.phones = phones;
+	}
+
+	/**
+	 * @return the created_at
+	 */
+	public Instant getCreated_at() {
+		return created_at;
+	}
+
+	/**
+	 * @param created_at the created_at to set
+	 */
+	public void setCreated_at(Instant created_at) {
+		this.created_at = created_at;
+	}
+
+	/**
+	 * @return the last_login
+	 */
+	public Instant getLast_login() {
+		return last_login;
+	}
+
+	/**
+	 * @param last_login the last_login to set
+	 */
+	public void setLast_login(Instant last_login) {
+		this.last_login = last_login;
 	}
 
 }

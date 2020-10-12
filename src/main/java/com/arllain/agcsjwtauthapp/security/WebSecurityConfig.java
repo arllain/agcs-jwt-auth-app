@@ -1,8 +1,8 @@
 package com.arllain.agcsjwtauthapp.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/public"
 	};	
 	
+	@Autowired
+  	private JwtTokenProvider jwtTokenProvider;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// Disable CSRF (cross site request forgery)
@@ -50,7 +53,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// If a user try to access a resource without having enough permissions
 		http.exceptionHandling().accessDeniedPage("/login");
-
+		
+	    // Apply JWT
+	    http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
 	}
 	
 	@Override

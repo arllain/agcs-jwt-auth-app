@@ -1,5 +1,9 @@
 package com.arllain.agcsjwtauthapp.services;
 
+import java.time.Instant;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,6 +43,7 @@ public class UserService {
 	public String signup(User user) {
 		if (!userRepository.existsByEmail(user.getEmail())) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setCreated_at(Instant.now());
 			userRepository.save(user);
 			return jwtTokenProvider.createToken(user.getEmail());
 		} else {
@@ -55,7 +60,23 @@ public class UserService {
 		try {
 			authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-			return jwtTokenProvider.createToken(userRepository.findByEmail(user.getEmail()).getEmail());
+
+			user = userRepository.findByEmail(user.getEmail());
+			user.setLast_login(Instant.now());
+			userRepository.save(user);
+			return jwtTokenProvider.createToken(user.getEmail());
+		} catch (AuthenticationException e) {
+			throw new AuthenticationCustomException("Invalid e-mail or password");
+		}
+	}
+
+	/**
+	 * @param req
+	 * @return
+	 */
+	public User whoami(HttpServletRequest req) {
+		try {
+			return userRepository.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
 		} catch (AuthenticationException e) {
 			throw new AuthenticationCustomException("Invalid e-mail or password");
 		}
