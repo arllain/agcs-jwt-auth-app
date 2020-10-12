@@ -1,13 +1,17 @@
 # AGCS JWT Authentication API
 
 ## About
-This is a sample JWT authentication service.
+This is a sample JWT authentication RESTful API.
 
-![](https://img.shields.io/badge/java_11-✓-blue.svg)
-![](https://img.shields.io/badge/spring_boot-✓-blue.svg)
-![](https://img.shields.io/badge/h2-✓-blue.svg)
-![](https://img.shields.io/badge/jwt-✓-blue.svg)
-![](https://img.shields.io/badge/swagger_2-✓-blue.svg)
+
+
+![](https://img.shields.io/badge/java_11-✓-green.svg)
+![](https://img.shields.io/badge/spring_boot-✓-green.svg)
+![](https://img.shields.io/badge/h2-✓-green.svg)
+![](https://img.shields.io/badge/Hibernate/JPA-✓-green.svg)
+![](https://img.shields.io/badge/PostgreSQL-✓-green.svg)
+![](https://img.shields.io/badge/jwt-✓-green.svg)
+![](https://img.shields.io/badge/swagger_2-✓-green.svg)
 
 ***
 
@@ -77,6 +81,17 @@ agcs-jwt-auth-app/
  ├── pom.xml
  └── README.md
 ```
+
+
+***
+
+You can access the api in Heroku at: [agcs-jwt-auth-app](https://agcs-jwt-auth-app.herokuapp.com/swagger-ui.html)
+
+<p align="left">
+  <img alt="Layout" src=".github/swagger.png" width="1000">
+</p>
+
+***
 
 # How to use this code?
 
@@ -187,3 +202,70 @@ $ curl -X POST "http://localhost:8080/signup" -H "accept: */*" -H "Content-Type:
   "timeStamp": 1602517073936
 }
 ```
+
+
+***
+
+# Docker
+
+There is a Dockerfile in project's root which has the configuration to create a docker image with dockerfile maven
+
+```
+FROM adoptopenjdk/openjdk11:alpine
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+VOLUME /tmp
+ARG JAR_FILE
+ADD ${JAR_FILE} /app/agcs-jwt-auth-app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/agcs-jwt-auth-app.jar"]
+
+```
+
+Run this command to create a docker image
+
+```
+$ mvn package
+
+```
+
+On completion of the mvn package command you should see a message indicating the docker image has been created
+
+<p align="left">
+  <img alt="Layout" src=".github/docker-image-created.png" width="800">
+</p> 
+
+
+Run this command to list available docker images
+
+```
+$ docker images
+
+```
+
+<p align="left">
+  <img alt="Layout" src=".github/docker-images.png" width="800">
+</p> 
+
+
+Now you can run the new Docker image
+
+```
+
+$ docker run -p 8080:8080 arllain/agcs-jwt-auth-app:1.0.0
+
+```
+
+You should see your app running
+
+<p align="left">
+  <img alt="Layout" src=".github/app-running.png" width="1200">
+</p> 
+
+
+---
+
+Made with 💜 by Arllain 👋 [See my linkedin](https://www.linkedin.com/in/arllain/)
+
+
+
