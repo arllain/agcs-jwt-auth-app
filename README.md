@@ -1,13 +1,17 @@
 # AGCS JWT Authentication API
 
 ## About
-This is a sample JWT authentication service.
+This is a sample JWT authentication RESTful API.
 
-![](https://img.shields.io/badge/java_11-✓-blue.svg)
-![](https://img.shields.io/badge/spring_boot-✓-blue.svg)
-![](https://img.shields.io/badge/h2-✓-blue.svg)
-![](https://img.shields.io/badge/jwt-✓-blue.svg)
-![](https://img.shields.io/badge/swagger_2-✓-blue.svg)
+
+
+![](https://img.shields.io/badge/java_11-✓-green.svg)
+![](https://img.shields.io/badge/spring_boot-✓-green.svg)
+![](https://img.shields.io/badge/h2-✓-green.svg)
+![](https://img.shields.io/badge/Hibernate/JPA-✓-green.svg)
+![](https://img.shields.io/badge/PostgreSQL-✓-green.svg)
+![](https://img.shields.io/badge/jwt-✓-green.svg)
+![](https://img.shields.io/badge/swagger_2-✓-green.svg)
 
 ***
 
@@ -77,6 +81,17 @@ agcs-jwt-auth-app/
  ├── pom.xml
  └── README.md
 ```
+
+
+***
+
+You can access the api in Heroku at: [agcs-jwt-auth-app](https://agcs-jwt-auth-app.herokuapp.com/swagger-ui.html)
+
+<p align="left">
+  <img alt="Layout" src=".github/swagger.png" width="1000">
+</p>
+
+***
 
 # How to use this code?
 
