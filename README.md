@@ -113,7 +113,7 @@ server.port=8081
 ```
 
 
-7. Make a GET request to `/me` to check you're not authenticated. You should receive a response with a `401` with an `Unauthorized` message since you haven't set your valid JWT token yet
+7. Make a GET request to `/me` to check you're not authenticated. You should receive a response with a `401` with an `Unauthorized` message since you haven't set your valid JWT token yet.
 
 ```
 $ curl -X GET "http://localhost:8080/me" -H "accept: */*"
@@ -154,9 +154,36 @@ $ curl -X GET http://localhost:8080/users/me -H 'Authorization: Bearer <JWT_TOKE
   "last_login": "2020-10-12T15:10:54.206899Z"
 }
 ```
+
 11. To create a new user make a POST request to `/signup` to create a new user
 
 ```
 $ curl -X POST "http://localhost:8080/signup" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"firstName\":\"Arllain\", \"lastName\":\"Silva\", \"email\":\"as@gmail.com\", \"password\":\"123456\", \"phones\":[ { \"number\":\"34568890\", \"area_code\":81, \"country_code\":\"+55\" }, { \"number\":988887888, \"area_code\":81, \"country_code\":\"+55\" } ]}"
 ```
 
+
+12. You should get a response with a `400` with an `Bad Request` similar response to this one, meaning validation error
+
+```javascript
+{
+  "status": 400,
+  "msg": "Validation error",
+  "timeStamp": 1602516639430,
+  "errors": [
+    {
+      "fieldName": "email",
+      "message": "You must enter a valid email"
+    }
+  ]
+}
+```
+
+13. You should get a response with a `401` with an `Unauthorized` similar response to this one, meaning validation error
+
+```javascript
+{
+  "status": 401,
+  "msg": "Invalid e-mail or password",
+  "timeStamp": 1602517073936
+}
+```
