@@ -202,3 +202,70 @@ $ curl -X POST "http://localhost:8080/signup" -H "accept: */*" -H "Content-Type:
   "timeStamp": 1602517073936
 }
 ```
+
+
+***
+
+# Docker
+
+There is a Dockerfile in project's root which has the configuration to create a docker image with dockerfile maven
+
+```
+FROM adoptopenjdk/openjdk11:alpine
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+VOLUME /tmp
+ARG JAR_FILE
+ADD ${JAR_FILE} /app/agcs-jwt-auth-app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/agcs-jwt-auth-app.jar"]
+
+```
+
+Run this command to create a docker image
+
+```
+$ mvn package
+
+```
+
+On completion of the mvn package command you should see a message indicating the docker image has been created
+
+<p align="left">
+  <img alt="Layout" src=".github/docker-image-created.png" width="800">
+</p> 
+
+
+Run this command to list available docker images
+
+```
+$ docker images
+
+```
+
+<p align="left">
+  <img alt="Layout" src=".github/docker-images.png" width="800">
+</p> 
+
+
+Now you can run the new Docker image
+
+```
+
+$ docker run -p 8080:8080 arllain/agcs-jwt-auth-app:1.0.0
+
+```
+
+You should see your app running
+
+<p align="left">
+  <img alt="Layout" src=".github/app-running.png" width="1200">
+</p> 
+
+
+---
+
+Made with 💜 by Arllain 👋 [See my linkedin](https://www.linkedin.com/in/arllain/)
+
+
+
