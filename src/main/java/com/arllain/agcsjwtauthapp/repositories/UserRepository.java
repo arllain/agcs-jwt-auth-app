@@ -10,5 +10,7 @@ import com.arllain.agcsjwtauthapp.domain.User;
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+	  boolean existsByEmail(String email);
 
+	  User findByEmail(String email);
 }
