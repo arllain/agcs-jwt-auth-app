@@ -141,7 +141,6 @@
 					</execution>
 				</executions>
 				<configuration>
-					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 					<repository>arllain/agcs-jwt-auth-app</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
