@@ -14,15 +14,14 @@
 
 &nbsp;
 
-####This is a sample JWT authentication RESTful API.
+## This is a sample JWT authentication RESTful API.
 
 &nbsp;
 &nbsp;
-&nbsp;
 
 
 
-# Project structure
+## Project structure
 
 ```
 agcs-jwt-auth-app/
@@ -93,7 +92,7 @@ agcs-jwt-auth-app/
 ***
 &nbsp;
 
-You can access the api in Heroku at: [agcs-jwt-auth-app](https://agcs-jwt-auth-app.herokuapp.com/swagger-ui.html)
+## You can access the api in Heroku at: [agcs-jwt-auth-app](https://agcs-jwt-auth-app.herokuapp.com/swagger-ui.html)
 
 &nbsp;
 
@@ -104,40 +103,35 @@ You can access the api in Heroku at: [agcs-jwt-auth-app](https://agcs-jwt-auth-a
 ***
 &nbsp;
 
-# How to use this code?
+## How to use this code?
 &nbsp;
 
 1. Make sure you have [Java 11](https://www.java.com/download/) and [Maven](https://maven.apache.org) installed
 
-&nbsp;
 
 2. Clone this repository
   
 ```
 $ git clone https://github.com/arllain/agcs-jwt-auth-app
 ```
-&nbsp;
 
 3. Navigate into the folder  
 
 ```
 $ cd agcs-jwt-auth-app
 ```
-&nbsp;
 
 4. Install dependencies
 
 ```
 $ mvn install
 ```
-&nbsp;
 
 5. Run the project
 
 ```
 $ mvn spring-boot:run
 ```
-&nbsp;
 
 6. Navigate to `http://localhost:8080/swagger-ui.html` in your browser to check everything is working correctly. You can change the default port in the `application.porperties` file
 
@@ -145,28 +139,24 @@ $ mvn spring-boot:run
 server.port=8081
 ```
 
-&nbsp;
 
 7. Make a GET request to `/me` to check you're not authenticated. You should receive a response with a `401` with an `Unauthorized` message since you haven't set your valid JWT token yet.
 
 ```
 $ curl -X GET "http://localhost:8080/me" -H "accept: */*"
 ```
-&nbsp;
 
 8. Make a POST request to `/signin`, with the new user you created or you can use the default user (user@email.com and password 123456), we programatically created to get a valid JWT token
 
 ```
 $ curl -X POST "http://localhost:8080/signin" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"email\": \"user@email.com\", \"password\": \"123456\"}"
 ```
-&nbsp;
 
 9. Add the JWT token as a Header parameter and make the initial GET request to `/me` again
 
 ```
 $ curl -X GET http://localhost:8080/users/me -H 'Authorization: Bearer <JWT_TOKEN>'
 ```
-&nbsp;
 
 10. You should get a similar response to this one, meaning that you're now authenticated
 
@@ -191,7 +181,6 @@ $ curl -X GET http://localhost:8080/users/me -H 'Authorization: Bearer <JWT_TOKE
   "last_login": "2020-10-12T15:10:54.206899Z"
 }
 ```
-&nbsp;
 
 11. To create a new user make a POST request to `/signup` to create a new user
 
@@ -199,7 +188,6 @@ $ curl -X GET http://localhost:8080/users/me -H 'Authorization: Bearer <JWT_TOKE
 $ curl -X POST "http://localhost:8080/signup" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"firstName\":\"Arllain\", \"lastName\":\"Silva\", \"email\":\"as@gmail.com\", \"password\":\"123456\", \"phones\":[ { \"number\":\"34568890\", \"area_code\":81, \"country_code\":\"+55\" }, { \"number\":988887888, \"area_code\":81, \"country_code\":\"+55\" } ]}"
 ```
 
-&nbsp;
 
 12. You should get a response with a `400` with an `Bad Request` similar response to this one, meaning validation error
 
@@ -217,8 +205,6 @@ $ curl -X POST "http://localhost:8080/signup" -H "accept: */*" -H "Content-Type:
 }
 ```
 
-&nbsp;
-
 13. You should get a response with a `401` with an `Unauthorized` similar response to this one, meaning validation error
 
 ```javascript
@@ -234,7 +220,7 @@ $ curl -X POST "http://localhost:8080/signup" -H "accept: */*" -H "Content-Type:
 &nbsp;
 &nbsp;
 
-# Docker
+## Docker
 
 There is a Dockerfile in project's root which has the configuration to create a docker image with dockerfile maven
 
@@ -264,8 +250,6 @@ On completion of the mvn package command you should see a message indicating the
   <img alt="Layout" src=".github/docker-image-created.png" width="800">
 </p> 
 
-&nbsp;
-
 Run this command to list available docker images
 
 ```
@@ -277,7 +261,7 @@ $ docker images
   <img alt="Layout" src=".github/docker-images.png" width="800">
 </p> 
 
-&nbsp;
+
 
 Now you can run the new Docker image
 
@@ -286,7 +270,7 @@ Now you can run the new Docker image
 $ docker run -p 8080:8080 arllain/agcs-jwt-auth-app:1.0.0
 
 ```
-&nbsp;
+
 
 You should see your app running
 
@@ -295,9 +279,9 @@ You should see your app running
 </p> 
 
 ---
-&nbsp;
 
-# CI/CD
+
+## CI/CD
 
 
 There is pipeline ci-dev.yml that is executed everytime the develop branch receives a pull request
@@ -393,15 +377,9 @@ jobs:
 
 
 ---
-&nbsp;
-&nbsp;
-&nbsp;
 
 Made with 💜 by Arllain 👋 [See my linkedin](https://www.linkedin.com/in/arllain/)
 
-&nbsp;
-&nbsp;
-&nbsp;
 
 
 
