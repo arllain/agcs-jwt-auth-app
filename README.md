@@ -304,9 +304,23 @@ jobs:
           path: staging
 ```
 
+This is a exemple of the pipeline CI for develop in github
+
+<p align="left">
+  <img alt="Layout" src=".github/pipeline-ci-dev.png" width="1200">
+</p> 
+
+
 ---
+&nbsp;
+&nbsp;
+&nbsp;
 
 Made with 💜 by Arllain 👋 [See my linkedin](https://www.linkedin.com/in/arllain/)
+
+&nbsp;
+&nbsp;
+&nbsp;
 
 
 
