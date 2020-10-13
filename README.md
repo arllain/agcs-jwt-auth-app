@@ -262,6 +262,47 @@ You should see your app running
   <img alt="Layout" src=".github/app-running.png" width="1200">
 </p> 
 
+---
+
+# CI/CD
+
+
+There is pipeline ci-dev.yml that is executed everytime the develop branch receives a pull request
+
+```
+name: CI  for develop
+
+on:
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build
+        run: mvn -B package --file pom.xml
+      - name: Create build path staging
+        run: mkdir staging && cp target/*.jar staging
+      - name: Upload math result for job
+        uses: actions/upload-artifact@v1
+        with:
+          name: agcs-jwt-auth-app
+          path: staging
+```
 
 ---
 
